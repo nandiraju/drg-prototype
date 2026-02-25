@@ -1,0 +1,569 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-clinical-blue: #2563eb;
+  --color-clinical-bg: #f8fafc;
+  --color-clinical-border: #e2e8f0;
+
+  --color-dark-bg: #111827;
+  --color-dark-card: #1e293b;
+  --color-dark-border: #334155;
+  --color-dark-text: #f1f5f9;
+  --color-dark-muted: #94a3b8;
+}
+
+:root {
+  --tooltip-bg: #ffffff;
+  --tooltip-text: #1e293b;
+}
+
+.dark {
+  --tooltip-bg: #1e293b;
+  --tooltip-text: #f1f5f9;
+}
+
+/* ════════════════════════════════════════════════════════════
+   BASE – light mode default
+   ════════════════════════════════════════════════════════════ */
+@layer base {
+  html {
+    font-size: 110%;
+    @apply h-full;
+  }
+
+  body {
+    @apply bg-clinical-bg text-slate-900 font-sans antialiased transition-colors duration-200 min-h-full;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════
+   DARK MODE – html.dark overrides
+   Every selector here starts with html.dark so it takes
+   precedence over Tailwind utilities and component styles.
+   ════════════════════════════════════════════════════════════ */
+
+/* Root containers */
+html.dark,
+html.dark body,
+html.dark #root {
+  background-color: #111827;
+  color: #f1f5f9;
+}
+
+/* Layout wrappers (App divs, main, sections) */
+html.dark div,
+html.dark main,
+html.dark section,
+html.dark aside,
+html.dark nav,
+html.dark footer,
+html.dark header {
+  background-color: inherit;
+}
+
+/* Override: explicit white/light backgrounds on structural elements */
+html.dark body > #root > div,
+html.dark body > #root > div > div {
+  background-color: #111827;
+}
+
+/* Sidebar */
+html.dark aside {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Navbar */
+html.dark nav[class*="sticky"] {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Footer */
+html.dark footer {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Cards and panels */
+html.dark .clinical-card,
+html.dark [class*="clinical-card"] {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+
+/* Headings */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: #f1f5f9;
+}
+
+/* Paragraph & label text */
+html.dark p,
+html.dark label,
+html.dark span:not([class*="text-"]),
+html.dark li {
+  color: #cbd5e1;
+}
+
+/* Form inputs, selects, textareas */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+  color-scheme: dark;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Tables */
+html.dark table {
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+
+html.dark tr,
+html.dark td,
+html.dark th {
+  border-color: #334155;
+}
+
+html.dark thead tr,
+html.dark tbody tr:hover {
+  background-color: rgba(255,255,255,0.03);
+}
+
+/* Divider lines */
+html.dark [class*="divide-"] > * + * {
+  border-color: #334155;
+}
+
+html.dark [class*="border-"] {
+  border-color: #334155;
+}
+
+/* Slate utility overrides for dark mode */
+html.dark .bg-white {
+  background-color: #1e293b !important;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-100 {
+  background-color: rgba(30,41,59,0.6) !important;
+}
+
+html.dark .bg-slate-200 {
+  background-color: #334155 !important;
+}
+
+html.dark .text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .text-slate-700,
+html.dark .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+html.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.dark .border-slate-100,
+html.dark .border-slate-200 {
+  border-color: #334155 !important;
+}
+
+/* Dark scrollbars */
+html.dark ::-webkit-scrollbar {
+  background-color: #1e293b;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background-color: #334155;
+  border-radius: 4px;
+}
+
+/* ════════════════════════════════════════════════════════════
+   COMPONENT CLASSES
+   ════════════════════════════════════════════════════════════ */
+
+.clinical-card {
+  @apply bg-white border border-clinical-border rounded-xl shadow-sm overflow-hidden transition-colors duration-200;
+}
+
+.dark .clinical-card {
+  background-color: #1e293b;
+  border-color: #334155;
+  box-shadow: none;
+}
+
+.clinical-btn-primary {
+  @apply bg-clinical-blue text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors disabled:opacity-50;
+}
+
+.clinical-btn-secondary {
+  @apply bg-white border border-clinical-border text-slate-600 px-4 py-2 rounded-lg font-medium hover:bg-slate-50 transition-colors;
+}
+
+.dark .clinical-btn-secondary {
+  background-color: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+.dark .clinical-btn-secondary:hover {
+  background-color: #334155;
+}
+
+.status-badge {
+  @apply px-2 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wider;
+}
+
+.status-active      { @apply bg-blue-100 text-blue-700; }
+.status-stable      { @apply bg-emerald-100 text-emerald-700; }
+.status-progressing { @apply bg-rose-100 text-rose-700; }
+.status-remission   { @apply bg-indigo-100 text-indigo-700; }
+
+.dark .status-active      { background-color: rgba(30,58,138,.35); color: #93c5fd; }
+.dark .status-stable      { background-color: rgba(6,78,59,.35);   color: #6ee7b7; }
+.dark .status-progressing { background-color: rgba(127,29,29,.35); color: #fca5a5; }
+.dark .status-remission   { background-color: rgba(55,48,163,.35); color: #a5b4fc; }
+
+/* ════════════════════════════════════════════════════════════
+   LOGIN MODAL OVERLAY
+   ════════════════════════════════════════════════════════════ */
+
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  /* rich dark backdrop with subtle radial glow */
+  background: radial-gradient(
+    ellipse 80% 60% at 60% 30%,
+    rgba(37, 99, 235, 0.18) 0%,
+    rgba(17, 24, 39, 0.0) 70%
+  ),
+  radial-gradient(
+    ellipse 60% 50% at 20% 80%,
+    rgba(16, 185, 129, 0.10) 0%,
+    transparent 70%
+  ),
+  #0d1117;
+}
+
+/* Animated blobs in backdrop */
+.login-bg-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  animation: blobDrift 14s ease-in-out infinite alternate;
+}
+
+.login-bg-blob-1 {
+  width: 520px; height: 520px;
+  background: rgba(37, 99, 235, 0.12);
+  top: -120px; left: -100px;
+  animation-duration: 16s;
+}
+
+.login-bg-blob-2 {
+  width: 400px; height: 400px;
+  background: rgba(16, 185, 129, 0.09);
+  bottom: -80px; right: -80px;
+  animation-duration: 20s;
+  animation-direction: alternate-reverse;
+}
+
+.login-bg-blob-3 {
+  width: 280px; height: 280px;
+  background: rgba(139, 92, 246, 0.08);
+  top: 40%; right: 20%;
+  animation-duration: 13s;
+}
+
+@keyframes blobDrift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.08); }
+}
+
+/* Card */
+.login-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(30, 41, 59, 0.82);
+  border: 1px solid rgba(100, 116, 139, 0.25);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,0.55),
+    0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+  padding: 2.5rem 2.25rem 2rem;
+}
+
+/* Header */
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.login-logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37,99,235,0.45);
+}
+
+.login-logo-icon {
+  width: 32px;
+  height: 32px;
+  color: #fff;
+}
+
+.login-title {
+  font-size: 2.25rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #f8fafc;
+  line-height: 1;
+  margin: 0;
+}
+
+.login-title-accent {
+  color: #3b82f6;
+}
+
+.login-subtitle {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-top: 0.25rem;
+}
+
+.login-divider {
+  margin: 1.5rem 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(100,116,139,0.3), transparent);
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-welcome {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  margin: 0;
+}
+
+.login-instructions {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: -0.5rem 0 0.25rem;
+}
+
+.login-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.login-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.login-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login-input-icon {
+  position: absolute;
+  left: 0.85rem;
+  width: 16px;
+  height: 16px;
+  color: #475569;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.login-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem 0.65rem 2.5rem;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  border-radius: 0.65rem;
+  color: #f1f5f9;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.login-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.login-input::placeholder {
+  color: #475569;
+}
+
+.login-input-pwd {
+  padding-right: 2.8rem;
+}
+
+.login-eye-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #475569;
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s;
+}
+
+.login-eye-btn:hover { color: #94a3b8; }
+
+.login-forgot-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -0.25rem;
+}
+
+.login-forgot-link {
+  background: none;
+  border: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #3b82f6;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s;
+}
+
+.login-forgot-link:hover { color: #60a5fa; text-decoration: underline; }
+
+.login-btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 0.65rem;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.4);
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  margin-top: 0.25rem;
+  font-family: inherit;
+}
+
+.login-btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(37,99,235,0.55);
+}
+
+.login-btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.login-spinner {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+}
+
+.login-btn-demo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.65rem 1.25rem;
+  background: rgba(15,23,42,0.5);
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 0.82rem;
+  border: 1px solid rgba(100,116,139,0.25);
+  border-radius: 0.65rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  font-family: inherit;
+}
+
+.login-btn-demo:hover:not(:disabled) {
+  background: rgba(30,41,59,0.8);
+  color: #f1f5f9;
+  border-color: rgba(100,116,139,0.45);
+}
+
+.login-btn-demo:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.login-footer-note {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #334155;
+  line-height: 1.5;
+}

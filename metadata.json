@@ -1,0 +1,5 @@
+{
+  "name": "Dr.G",
+  "description": "Clinical Decision Support platform for oncologists, featuring patient timelines, treatment planning, and trial matching.",
+  "requestFramePermissions": []
+}

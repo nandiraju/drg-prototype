@@ -1,0 +1,188 @@
+import { Patient, Treatment, LabResult, ClinicalTrial, TimelineEvent, Drug } from './types';
+
+export const MOCK_PATIENTS: Patient[] = [
+  {
+    id: 'P001',
+    name: 'Sarah Johnson',
+    age: 58,
+    gender: 'Female',
+    mrn: 'MRN-8829-X',
+    diagnosis: 'Invasive Ductal Carcinoma (Breast)',
+    stage: 'T2N1M0 (Stage IIB)',
+    ecog: 1,
+    biomarkers: ['ER+', 'PR+', 'HER2-'],
+    lastVisit: '2026-02-15',
+    status: 'Active',
+  },
+  {
+    id: 'P002',
+    name: 'Robert Miller',
+    age: 64,
+    gender: 'Male',
+    mrn: 'MRN-1145-Y',
+    diagnosis: 'Non-Small Cell Lung Cancer (NSCLC)',
+    stage: 'Stage IV',
+    ecog: 2,
+    biomarkers: ['EGFR L858R+', 'PD-L1 45%'],
+    lastVisit: '2026-02-20',
+    status: 'Progressing',
+  },
+  {
+    id: 'P003',
+    name: 'Elena Rodriguez',
+    age: 42,
+    gender: 'Female',
+    mrn: 'MRN-3390-Z',
+    diagnosis: 'Colorectal Adenocarcinoma',
+    stage: 'Stage III',
+    ecog: 0,
+    biomarkers: ['KRAS WT', 'MSI-H'],
+    lastVisit: '2026-01-10',
+    status: 'Stable',
+  },
+];
+
+export const MOCK_TREATMENTS: Treatment[] = [
+  {
+    id: 'T001',
+    patientId: 'P001',
+    drug: 'AC-T (Adriamycin/Cyclophosphamide)',
+    dose: '60/600 mg/m²',
+    date: '2026-01-05',
+    cycle: 1,
+    type: 'Chemotherapy',
+    status: 'Completed',
+  },
+  {
+    id: 'T002',
+    patientId: 'P001',
+    drug: 'AC-T (Adriamycin/Cyclophosphamide)',
+    dose: '60/600 mg/m²',
+    date: '2026-01-26',
+    cycle: 2,
+    type: 'Chemotherapy',
+    status: 'Completed',
+    toxicityGrade: 2,
+  },
+  {
+    id: 'T003',
+    patientId: 'P001',
+    drug: 'AC-T (Adriamycin/Cyclophosphamide)',
+    dose: '60/600 mg/m²',
+    date: '2026-02-16',
+    cycle: 3,
+    type: 'Chemotherapy',
+    status: 'Ongoing',
+  },
+];
+
+export const MOCK_LABS: LabResult[] = [
+  {
+    id: 'L001',
+    patientId: 'P001',
+    name: 'WBC',
+    value: 3.2,
+    unit: 'x10³/µL',
+    range: '4.5 - 11.0',
+    date: '2026-02-15',
+    status: 'Low',
+  },
+  {
+    id: 'L002',
+    patientId: 'P001',
+    name: 'Hemoglobin',
+    value: 10.8,
+    unit: 'g/dL',
+    range: '12.0 - 16.0',
+    date: '2026-02-15',
+    status: 'Low',
+  },
+  {
+    id: 'L003',
+    patientId: 'P001',
+    name: 'ALT',
+    value: 24,
+    unit: 'U/L',
+    range: '7 - 55',
+    date: '2026-02-15',
+    status: 'Normal',
+  },
+];
+
+export const MOCK_TRIALS: ClinicalTrial[] = [
+  {
+    id: 'TR001',
+    name: 'DESTINY-Breast06',
+    phase: 'Phase 3',
+    criteria: ['HER2-low', 'HR+', 'Post-endocrine therapy'],
+    status: 'Recruiting',
+    matchScore: 95,
+    description: 'Trastuzumab deruxtecan vs physician choice chemotherapy.',
+  },
+  {
+    id: 'TR002',
+    name: 'KEYNOTE-522',
+    phase: 'Phase 3',
+    criteria: ['Triple-negative breast cancer', 'Stage II-III'],
+    status: 'Active',
+    matchScore: 40,
+    description: 'Pembrolizumab plus chemotherapy as neoadjuvant treatment.',
+  },
+];
+
+export const MOCK_TIMELINE: TimelineEvent[] = [
+  {
+    id: 'E001',
+    patientId: 'P001',
+    date: '2025-11-12',
+    type: 'Diagnosis',
+    title: 'Initial Diagnosis',
+    description: 'Biopsy confirmed IDC, Grade 2.',
+  },
+  {
+    id: 'E002',
+    patientId: 'P001',
+    date: '2025-12-05',
+    type: 'Imaging',
+    title: 'PET/CT Scan',
+    description: 'No evidence of distant metastasis. Axillary node involvement noted.',
+  },
+  {
+    id: 'E003',
+    patientId: 'P001',
+    date: '2026-01-05',
+    type: 'Treatment',
+    title: 'Cycle 1 Started',
+    description: 'AC-T Regimen initiated.',
+  },
+  {
+    id: 'E004',
+    patientId: 'P001',
+    date: '2026-01-15',
+    type: 'Toxicity',
+    title: 'Grade 2 Neutropenia',
+    description: 'Patient reported fatigue and mild fever.',
+    severity: 'Medium',
+  },
+];
+
+export const MOCK_DRUGS: Drug[] = [
+  {
+    id: 'D001',
+    name: 'Pembrolizumab',
+    class: 'PD-1 Inhibitor',
+    indications: ['NSCLC', 'Melanoma', 'HNSCC', 'MSI-H Solid Tumors'],
+    commonDose: '200 mg Q3W or 400 mg Q6W',
+    toxicities: ['Colitis', 'Pneumonitis', 'Thyroiditis', 'Fatigue'],
+    interactions: ['Corticosteroids (may reduce efficacy)'],
+  },
+  {
+    id: 'D002',
+    name: 'Osimertinib',
+    class: 'EGFR TKI (3rd Gen)',
+    indications: ['EGFR+ NSCLC (Exon 19 del or L858R)'],
+    commonDose: '80 mg PO QD',
+    toxicities: ['Diarrhea', 'Rash', 'Paronychia', 'QTc Prolongation'],
+    interactions: ['CYP3A4 Inducers', 'QTc prolonging drugs'],
+  },
+];
