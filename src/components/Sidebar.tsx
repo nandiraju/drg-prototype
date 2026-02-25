@@ -3,11 +3,12 @@ import { NavLink } from 'react-router-dom';
 import { 
   LayoutDashboard, Users, Calculator, Microscope, 
   FileText, BarChart3, Pill, GraduationCap, 
-  ChevronLeft, ChevronRight, Menu, ClipboardList, LogOut
+  ChevronLeft, ChevronRight, Menu, ClipboardList, LogOut, ListChecks
 } from 'lucide-react';
 import { cn } from '../types';
 
 const NAV_ITEMS = [
+  { icon: ListChecks,    label: 'Work List',    path: '/worklist' },
   { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
   { icon: Users, label: 'Patients', path: '/patients' },
   { icon: ClipboardList, label: 'Order Wizard', path: '/orders' },

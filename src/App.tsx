@@ -14,6 +14,7 @@ import { Analytics } from './pages/Analytics';
 import { QuizPage } from './pages/QuizPage';
 import { OrderWizard } from './pages/OrderWizard';
 import { PatientsLikeMe } from './pages/PatientsLikeMe';
+import { WorkList } from './pages/WorkList';
 import { AnimatePresence } from 'motion/react';
 
 export default function App() {
@@ -42,6 +43,7 @@ export default function App() {
                 <Route path="/patients" element={<PatientList />} />
                 <Route path="/patients/:id" element={<PatientProfile />} />
                 <Route path="/orders" element={<OrderWizard />} />
+                <Route path="/worklist" element={<WorkList />} />
                 <Route path="/calculators" element={<CalculatorsPage />} />
                 <Route path="/trials" element={<TrialsPage />} />
                 <Route path="/reports" element={<ReportsPage />} />
